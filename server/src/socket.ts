@@ -25,7 +25,9 @@ function socket({ io }: { io: Server }) {
 			console.log("Client disconnected");
 		});
 
+		// show all the rooms to the client
 		socket.emit(EVENTS.SERVER.ROOMS, rooms);
+
 		/**
 		 * Client creates a new room
 		 * @param roomName

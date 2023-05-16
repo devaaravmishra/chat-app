@@ -15,7 +15,7 @@ interface SocketContext {
 	username?: string;
 	setUsername: React.Dispatch<React.SetStateAction<string>>;
 	roomId?: string;
-	rooms: object;
+	rooms: Record<string, { name: string }>;
 	messages?: Message[];
 	setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
 }
@@ -39,31 +39,28 @@ export const SocketProvider = ({ children }: Props) => {
 	const [rooms, setRooms] = useState({});
 	const [messages, setMessages] = useState<Message[]>([]);
 
+	socket.on(EVENTS.SERVER.ROOMS, (name: string) => {
+		setRooms(name);
+	});
+
+	socket.on(EVENTS.SERVER.JOINED_ROOM, (id: string) => {
+		setRoomId(id);
+		setMessages([]);
+	});
+
 	useEffect(() => {
 		window.onfocus = () => {
 			document.title = "Chat App";
 		};
 	}, []);
 
-	socket.on(EVENTS.SERVER.ROOMS, (value: string) => {
-		setRooms(value);
-	});
-
-	socket.on(EVENTS.SERVER.JOINED_ROOM, (value: string) => {
-		setRoomId(value);
-		setMessages([]);
-	});
-
 	useEffect(() => {
-		socket.on(EVENTS.SERVER.ROOM_MESSAGE, ({ message, username, time }) => {
+		socket.on(EVENTS.SERVER.ROOM_MESSAGE, (message: Message) => {
 			if (!document.hasFocus()) {
 				document.title = "New message...";
 			}
 
-			setMessages((messages) => [
-				...messages,
-				{ message, username, time },
-			]);
+			setMessages((messages) => [...messages, message]);
 		});
 	}, [socket]);
 
