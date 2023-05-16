@@ -2,6 +2,8 @@
 
 A Realtime Chat Application built using Node.js, Express, Socket.io, and Next.js
 
+---
+
 ## Getting Started
 
 First, run the backend server:
@@ -24,6 +26,8 @@ npm run dev
 yarn dev
 ```
 
+---
+
 ## Built With
 
 -   [Node.js](https://nodejs.org/en/) - JavaScript runtime
@@ -32,6 +36,8 @@ yarn dev
 -   [Next.js](https://nextjs.org/) - React framework for production
 -   [React](https://reactjs.org/) - JavaScript library for building user interfaces
 -   [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript at Any Scale
+
+---
 
 ## Backend
 
@@ -77,11 +83,15 @@ Emitted when a user creates a new room.
 }
 ```
 
-## Snapshots
+---
 
-[screenshot 2](./client/screenshots/ss2.png)
-[screenshot 1](./client/screenshots/ss1.png)
-[screenshot 3](./client/screenshots/ss3.png)
+## Screenshots
+
+![screenshot_1](./client/screenshots/ss2.png)
+![screenshot_2](./client/screenshots/ss1.png)
+![screenshot_3](./client/screenshots/ss3.png)
+
+---
 
 ## License
 
