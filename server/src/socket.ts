@@ -73,11 +73,6 @@ function socket({ io }: { io: Server }) {
 					username,
 					time: `${time.getHours()}:${time.getMinutes()}`,
 				});
-
-				// emit an event to all clients in the room
-				socket
-					.to(roomId)
-					.emit(EVENTS.CLIENT.SEND_ROOM_MESSAGE, message);
 			}
 		);
 
