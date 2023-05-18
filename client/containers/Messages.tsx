@@ -1,5 +1,5 @@
 import EVENTS from "@/config/events";
-import { useSocket } from "@/context/socket.context";
+import { Message, useSocket } from "@/context/socket.context";
 import { useEffect, useRef } from "react";
 import styles from "../styles/Messages.module.css";
 
@@ -11,7 +11,7 @@ const MessagesContainer = () => {
 	function handleMessageSend() {
 		const message = newMessageRef.current?.value;
 
-		if (!String(message).trim()) {
+		if (!message || !String(message).trim()) {
 			return;
 		}
 
@@ -24,7 +24,7 @@ const MessagesContainer = () => {
 		const date = new Date();
 
 		setMessages([
-			...(messages as any),
+			...(messages as Message[]),
 			{
 				message,
 				username: "You",

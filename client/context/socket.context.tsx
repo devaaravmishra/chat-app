@@ -4,7 +4,7 @@ import io, { Socket } from "socket.io-client";
 import { SOCKET_URL } from "../config/default";
 import EVENTS from "@/config/events";
 
-type Message = {
+export type Message = {
 	message: string;
 	username: string;
 	time: string;
